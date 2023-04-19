@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
+import cors from "cors";
 
 import { dbConnect } from "./config/dbConnect.js";
 import authRouter from "./routes/authRoutes.js";
@@ -21,6 +22,7 @@ dbConnect();
 // app.use(bodyParser.json()) and app.use(bodyParser.urlencoded({extended: false}))
 app.use(express.json());
 app.use(cookieParser());
+app.use(cors());
 
 app.use("/api/user", authRouter);
 app.use("/api/product", productRouter);

@@ -118,11 +118,15 @@ export const handleRefreshToken = asyncHandler(async (req, res) => {
 
 // Get all users
 export const getAllUsers = asyncHandler(async (req, res) => {
-  const allUsers = await User.find();
-  if (allUsers) {
-    res.status(200).json(allUsers);
-  } else {
-    throw new Error("There are no users");
+  try {
+    const allUsers = await User.find();
+    if (allUsers) {
+      res.status(200).json(allUsers);
+    } else {
+      throw new Error("There are no users");
+    }
+  } catch (err) {
+    throw new Error(err);
   }
 });
 

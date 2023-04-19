@@ -10,9 +10,17 @@ const blogSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    reactions: {
+      thumbsUp: Number,
+      hooray: Number,
+      heart: Number,
+      rocket: Number,
+      wow: Number,
+      coffee: Number,
+    },
     category: {
       type: String,
-      required: true,
+      // required: true,
     },
     numViews: {
       type: Number,
@@ -45,9 +53,13 @@ const blogSchema = new mongoose.Schema(
         "any image address by you can find or you can upload one on the server later for default images",
     },
     author: {
-      type: String,
-      default: "Admin",
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
     },
+    // author: {
+    //   type: String,
+    //   default: "Admin",
+    // },
   },
   {
     toJSON: {

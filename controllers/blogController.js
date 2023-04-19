@@ -16,12 +16,15 @@ export const createBlog = asyncHandler(async (req, res) => {
 });
 
 export const updateBlog = asyncHandler(async (req, res) => {
+  console.log(req.body);
   const { id } = req.params;
   validateMongoDBId(id);
   try {
+    console.log("we are in try block");
     const updatedBlog = await Blog.findByIdAndUpdate(id, req.body, { new: true });
     res.status(201).json(updatedBlog);
   } catch (err) {
+    console.log("we entered the catch block");
     throw new Error(err);
   }
 });
@@ -63,6 +66,7 @@ export const deleteBlog = asyncHandler(async (req, res) => {
   try {
     const deletedBlog = await Blog.findByIdAndDelete(id);
     res.json(deletedBlog);
+    // the name deletedBlog will only matter if we have two things we are sending , if it is only one we just use the propperties inside of it
   } catch (err) {
     throw new Error(err);
   }

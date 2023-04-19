@@ -15,10 +15,10 @@ import { blogImgResize, uploadPhoto } from "../middlewares/uploadImages.js";
 
 const router = express.Router();
 
-router.post("/", authMiddleware, isAdmin, createBlog);
+router.post("/", createBlog);
 router.get("/", getAllBlogs);
-router.put("/likes", authMiddleware, likeBlog);
-router.put("/dislikes", authMiddleware, dislikeBlog);
+router.put("/likes", likeBlog);
+router.put("/dislikes", dislikeBlog);
 router.put(
   "/upload/:id",
   authMiddleware,
@@ -27,8 +27,8 @@ router.put(
   blogImgResize,
   uploadImages
 );
-router.put("/:id", authMiddleware, isAdmin, updateBlog);
+router.put("/:id", updateBlog);
 router.get("/:id", getSingleBlog);
-router.delete("/:id", authMiddleware, isAdmin, deleteBlog);
+router.delete("/:id", deleteBlog);
 
 export default router;

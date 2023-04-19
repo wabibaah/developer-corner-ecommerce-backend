@@ -31,7 +31,7 @@ import { authMiddleware, isAdmin } from "../middlewares/authMiddleware.js";
 router.post("/register", createUser);
 router.post("/login", loginUser);
 router.post("/admin-login", loginAdmin);
-router.get("/all-users", authMiddleware, isAdmin, getAllUsers);
+router.get("/all-users", getAllUsers);
 router.get("/refresh", handleRefreshToken); // must be here so that it will not use refresh as an id to say invalid
 router.get("/logout", logoutUser);
 router.get("/wishlist", authMiddleware, getWishlist);
